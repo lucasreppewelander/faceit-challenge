@@ -1,8 +1,16 @@
 import { ReactElement } from 'react';
 
+interface ITournamentParticipants {
+  current: number;
+  max: number;
+}
 export interface ITournamentObject {
   id: number;
   name: string;
+  organizer: string;
+  game: string;
+  participants: ITournamentParticipants;
+  startDate: string;
 }
 
 export interface IMainState {
@@ -11,6 +19,7 @@ export interface IMainState {
 
 export interface ITournamentState {
   list: ITournamentObject[];
+  searchStr: string;
 }
 
 export interface IReduxAction {
@@ -20,4 +29,9 @@ export interface IReduxAction {
 
 export interface DivWithChild {
   children?: ReactElement;
+}
+
+export interface PostRequest {
+  method: string;
+  body?: string;
 }
