@@ -5,7 +5,6 @@ import GlobalStyle from './GlobalStyle';
 import store from './store';
 import Container from './components/Container';
 import H4 from './components/H4';
-import H6 from './components/H6';
 import Button from './components/Button';
 import Input from './components/Input';
 import Row from './components/Row';

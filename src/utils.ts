@@ -12,14 +12,17 @@ const makeRequest = async (url: string, METHOD: string, body?: object) => {
 
   if (METHOD === 'POST' && body) {
     options.body = JSON.stringify(body);
+    options.headers = {
+      'Content-Type': 'application/json',
+    };
   } else {
     const randomNumber = Math.floor(Math.random() * 3);
-    if (randomNumber !== 0) {
+    if (randomNumber > 1) {
       throw 'Failed';
     }
   }
 
-  const response = await window.fetch(`${API_BASE_URL}${url}`);
+  const response = await window.fetch(`${API_BASE_URL}${url}`, options);
 
   if (response.ok) {
     return response.json();

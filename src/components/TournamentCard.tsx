@@ -2,11 +2,12 @@ import { ITournamentObject } from '../interfaces';
 import styled from 'styled-components';
 import theme from '../theme';
 
+import { useTypedDispatch } from '../store';
+import { updateTournament, deleteTournament } from '../actions/tournaments';
 import React from 'react';
 import H6 from './H6';
 import Button from './Button';
 import CardWrapper from './CardWrapper';
-import Row from './Row';
 
 const ListItem = styled.li`
   list-style: none;
@@ -29,14 +30,10 @@ const ButtonRow = styled.div`
   }
 `;
 
-const TournamentCard = ({
-  id,
-  name,
-  organizer,
-  game,
-  participants,
-  startDate,
-}: ITournamentObject) => {
+const TournamentCard = (props: ITournamentObject) => {
+  const dispatch = useTypedDispatch();
+  const { name, organizer, game, participants, startDate } = props;
+
   const generateDate = (date: string): string => {
     return `${new Date(date).toLocaleDateString()}, ${new Date(
       date
@@ -45,9 +42,10 @@ const TournamentCard = ({
 
   const onEdit = () => {
     const newName = window.prompt('New tournament name');
-    console.log('newName', newName);
     if (newName) {
       // update the tournament
+      const editObject = { ...props, name: newName };
+      dispatch(updateTournament(editObject));
     }
   };
 
@@ -55,9 +53,9 @@ const TournamentCard = ({
     const yes = window.confirm(
       'Are you sure you want to delete this tournament?'
     );
-    console.log('yes', yes);
+
     if (yes) {
-      // remove it
+      dispatch(deleteTournament(props.id));
     }
   };
 

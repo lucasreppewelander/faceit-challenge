@@ -29,7 +29,6 @@ export const searchTournaments =
 export const createTournament =
   (name: string) => async (dispatch: Dispatch<AnyAction>) => {
     const response = await post('/tournaments', { name });
-    console.log('response', response);
     if (response) {
       dispatch({ type: 'tournament/add', payload: response });
     }

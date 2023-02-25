@@ -5,7 +5,7 @@ interface ITournamentParticipants {
   max: number;
 }
 export interface ITournamentObject {
-  id: number;
+  id: string;
   name: string;
   organizer: string;
   game: string;
@@ -34,4 +34,5 @@ export interface DivWithChild {
 export interface PostRequest {
   method: string;
   body?: string;
+  headers?: HeadersInit;
 }

@@ -10,6 +10,11 @@ const CardWrapper = styled.div`
   box-sizing: border-box;
   border-radius: ${theme.borderRadius};
   background-color: ${theme.palette.background.base};
+
+  @media (max-width: ${theme.breakpoints.s}) {
+    width: 100%;
+    margin: ${theme.spacing(1.5)};
+  }
 `;
 
 export default CardWrapper;

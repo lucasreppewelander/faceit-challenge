@@ -35,10 +35,22 @@ export default function tournaments(
         list: action.payload,
         loading: false,
       };
+    case 'tournament/add':
+      return {
+        ...state,
+        list: [action.payload, ...state.list],
+      };
     case 'tournament/update':
       return {
         ...state,
-        list: [...state.list, action.payload],
+        list: [
+          ...state.list.map((item) => {
+            if (item.id === action.payload.id) {
+              return { ...action.payload };
+            }
+            return item;
+          }),
+        ],
       };
     case 'tournament/remove':
       return {
